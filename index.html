@@ -25,6 +25,7 @@
             width: 100px;
             height: 100px;
             margin-bottom: 20px;
+            z-index: 3; /* Повышаем приоритет логотипа */
         }
 
         .text-container {
@@ -32,6 +33,7 @@
             margin-bottom: 20px;
             max-width: 600px;
             position: relative;
+            z-index: 3; /* Повышаем приоритет текста над эффектом "Матрицы" */
         }
 
         .line {
@@ -39,28 +41,65 @@
             margin-bottom: 10px;
             transition: opacity 2s ease-in-out;
             text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
-            position: relative;
-            z-index: 1;
         }
 
         .line.visible {
             opacity: 1;
         }
 
-        /* Эффект сканера */
-        .scanner {
+        .cta-button {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 12px 24px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.5s ease, box-shadow 0.5s ease;
+            opacity: 0;
+            transform: scale(0.5);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.7);
+            animation: pulse 2s infinite;
+            z-index: 4; /* Повышаем приоритет кнопки над всеми элементами */
+        }
+
+        .cta-button.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cta-button:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.7);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .background-animation {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
-            animation: scan 3s linear infinite;
+            background: radial-gradient(circle, rgba(0, 255, 0, 0.15) 0%, rgba(0, 0, 0, 0.85) 70%);
+            animation: pulse-bg 4s infinite;
+            z-index: 1; /* Позади текста и кнопки */
         }
 
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        @keyframes pulse-bg {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
         }
 
         /* Эффект "Матрицы" */
@@ -72,7 +111,7 @@
             height: 100%;
             pointer-events: none;
             overflow: hidden;
-            z-index: -1;
+            z-index: 2; /* Позади текста и кнопки, но выше фона */
         }
 
         .matrix div {
@@ -93,46 +132,6 @@
                 transform: translateY(100vh);
                 opacity: 0;
             }
-        }
-
-        .cta-button {
-            background-color: #ff0000;
-            color: #fff;
-            padding: 12px 24px;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.5s ease, box-shadow 0.5s ease;
-            opacity: 0;
-            transform: scale(0.5);
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.7);
-        }
-
-        .cta-button.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .cta-button:hover {
-            background-color: #00ff00;
-            color: #000;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.7);
-        }
-
-        .background-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(0, 255, 0, 0.15) 0%, rgba(0, 0, 0, 0.85) 70%);
-            animation: pulse 4s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
         }
     </style>
 </head>
@@ -158,7 +157,6 @@
     </header>
 
     <div class="text-container">
-        <div class="scanner"></div>
         <div id="line1" class="line">NZT48: Unlock a New Reality</div>
         <div id="line2" class="line">By acquiring this token in the presale, you become part of an exclusive circle where financial gain is only the beginning.</div>
     </div>
