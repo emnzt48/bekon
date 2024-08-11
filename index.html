@@ -46,25 +46,12 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
-            text-decoration: none;
-            display: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, opacity 1s ease;
+            opacity: 0;
         }
         .cta-button:hover {
             background-color: #00ff00;
             color: #000;
-        }
-        .email {
-            display: none;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .email a {
-            color: #ff0000;
-            text-decoration: none;
-        }
-        .email a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -80,9 +67,6 @@
     </div>
 
     <button id="cta-button" class="cta-button">Are you ready for the transformation?</button>
-    <div id="email" class="email">
-        <a href="mailto:emnzt48@proton.me">Contact us: emnzt48@proton.me</a>
-    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -95,12 +79,13 @@
             }, 3000); // Появление второй строки через 3 секунды
 
             setTimeout(() => {
-                document.getElementById('cta-button').style.display = 'inline-block';
+                let button = document.getElementById('cta-button');
+                button.style.opacity = '1';
             }, 5500); // Появление кнопки через 5.5 секунд
 
-            // Добавляем обработчик нажатия на кнопку
+            // Добавляем обработчик нажатия на кнопку для запуска почтового клиента
             document.getElementById('cta-button').addEventListener('click', function() {
-                document.getElementById('email').style.display = 'block';
+                window.location.href = "mailto:emnzt48@proton.me?subject=Interested%20in%20NZT48%20Token&body=I%20want%20to%20learn%20more%20about%20NZT48.";
             });
         });
     </script>
