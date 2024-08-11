@@ -15,7 +15,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -35,7 +35,7 @@
             max-width: 600px;
         }
         .line {
-            display: none;
+            visibility: hidden;
             margin-bottom: 10px;
         }
         .cta-button {
@@ -58,7 +58,13 @@
             display: none;
             margin-top: 20px;
             font-size: 18px;
+        }
+        .email a {
             color: #ff0000;
+            text-decoration: none;
+        }
+        .email a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -73,17 +79,19 @@
         <div id="line2" class="line">By acquiring this token in the presale, you become part of an exclusive circle where financial gain is only the beginning.</div>
     </div>
 
-    <a id="cta-button" class="cta-button">Are you ready for the transformation?</a>
-    <div id="email" class="email">Contact us: emnzt48@proton.me</div>
+    <button id="cta-button" class="cta-button">Are you ready for the transformation?</button>
+    <div id="email" class="email">
+        <a href="mailto:emnzt48@proton.me">Contact us: emnzt48@proton.me</a>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
-                document.getElementById('line1').style.display = 'block';
+                document.getElementById('line1').style.visibility = 'visible';
             }, 500); // Появление первой строки через 0.5 секунды
 
             setTimeout(() => {
-                document.getElementById('line2').style.display = 'block';
+                document.getElementById('line2').style.visibility = 'visible';
             }, 3000); // Появление второй строки через 3 секунды
 
             setTimeout(() => {
