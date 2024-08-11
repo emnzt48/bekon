@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About NZT48</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #f93900; /* Красный цвет текста */
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: justify;
+            flex-direction: column;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.5;
+            overflow: hidden;
+            white-space: pre-wrap;
+            text-shadow: 0px 0px 10px #f93900;
+        }
+
+        .typing-text {
+            font-size: 1rem;
+            white-space: pre-wrap;
+            overflow: hidden;
+            border-right: 2px solid #f93900; /* Красный курсор */
+            box-sizing: border-box;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from { border-color: transparent; }
+            to { border-color: #f93900; }
+        }
+
+        .email {
+            font-size: 1rem;
+            color: #ffd700; /* Золотой цвет текста */
+            opacity: 0;
+            margin-top: 20px;
+            transition: opacity 2s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <p class="typing-text" id="text-output"></p>
+        <p class="email" id="email">Contact us: <a href="mailto:emnzt48@proton.me">emnzt48@proton.me</a></p>
+    </div>
+
+    <script>
+        const text = `
+NZT48 is not just a digital asset; it’s a step into a new reality. By acquiring this token in the presale, you become part of an exclusive circle where financial gain is only the beginning.
+
+The price of NZT48 will rise, bringing you profit, but its true value runs much deeper. Within a month of purchase, you’ll start to notice something extraordinary.
+
+Financial gain: Your investment will grow as the token’s value increases, but that’s just the tip of the iceberg.
+
+Awakening abilities: Day by day, you’ll become more insightful. Your mind will begin to outpace time, allowing you to foresee events before they happen.
+
+Enhanced influence: People will be drawn to you, following your lead without even realizing it. These abilities will develop gradually, but within a month, you’ll feel their full power.
+
+NZT48 isn’t just a token; it’s a path to your new self. Are you ready for the transformation?
+        `;
+        let i = 0;
+        const speed = 50; /* Скорость печати в миллисекундах */
+        const outputElement = document.getElementById('text-output');
+        const emailElement = document.getElementById('email');
+
+        function typeWriter() {
+            if (i < text.length) {
+                outputElement.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // Показываем адрес электронной почты после завершения печати текста
+                emailElement.style.opacity = '1';
+            }
+        }
+
+        // Запуск функции печатания текста после загрузки страницы
+        window.onload = function() {
+            typeWriter();
+        };
+    </script>
+</body>
+</html>
