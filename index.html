@@ -20,29 +20,81 @@
             box-sizing: border-box;
             overflow: hidden;
         }
+
         header img {
             width: 100px;
             height: 100px;
             margin-bottom: 20px;
-            animation: fadeInOut 3s ease-in-out infinite;
         }
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
+
         .text-container {
             font-size: 18px;
             margin-bottom: 20px;
             max-width: 600px;
+            position: relative;
         }
+
         .line {
             opacity: 0;
             margin-bottom: 10px;
             transition: opacity 2s ease-in-out;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+            position: relative;
+            z-index: 1;
         }
+
         .line.visible {
             opacity: 1;
         }
+
+        /* Эффект сканера */
+        .scanner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Эффект "Матрицы" */
+        .matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .matrix div {
+            position: absolute;
+            bottom: 100%;
+            width: 1px;
+            height: 100%;
+            background-color: #00ff00;
+            animation: matrix 10s linear infinite;
+        }
+
+        @keyframes matrix {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
         .cta-button {
             background-color: #ff0000;
             color: #fff;
@@ -51,18 +103,23 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.5s ease;
+            transition: background-color 0.3s ease, transform 0.5s ease, box-shadow 0.5s ease;
             opacity: 0;
+            transform: scale(0.5);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(255, 0, 0, 0.7), 0 0 30px rgba(255, 0, 0, 0.7);
         }
+
         .cta-button.visible {
             opacity: 1;
             transform: scale(1);
-            transition: opacity 1s ease, transform 0.5s ease;
         }
+
         .cta-button:hover {
             background-color: #00ff00;
             color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.7), 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.7);
         }
+
         .background-animation {
             position: absolute;
             top: 0;
@@ -72,6 +129,7 @@
             background: radial-gradient(circle, rgba(0, 255, 0, 0.15) 0%, rgba(0, 0, 0, 0.85) 70%);
             animation: pulse 4s infinite;
         }
+
         @keyframes pulse {
             0%, 100% { opacity: 0.9; }
             50% { opacity: 1; }
@@ -82,11 +140,25 @@
 
     <div class="background-animation"></div>
 
+    <!-- Эффект "Матрицы" -->
+    <div class="matrix">
+        <div style="left: 10%; animation-duration: 3s;"></div>
+        <div style="left: 20%; animation-duration: 4s;"></div>
+        <div style="left: 30%; animation-duration: 5s;"></div>
+        <div style="left: 40%; animation-duration: 6s;"></div>
+        <div style="left: 50%; animation-duration: 7s;"></div>
+        <div style="left: 60%; animation-duration: 5s;"></div>
+        <div style="left: 70%; animation-duration: 4s;"></div>
+        <div style="left: 80%; animation-duration: 3s;"></div>
+        <div style="left: 90%; animation-duration: 2s;"></div>
+    </div>
+
     <header>
         <img src="logo.png" alt="NZT48 Token Logo">
     </header>
 
     <div class="text-container">
+        <div class="scanner"></div>
         <div id="line1" class="line">NZT48: Unlock a New Reality</div>
         <div id="line2" class="line">By acquiring this token in the presale, you become part of an exclusive circle where financial gain is only the beginning.</div>
     </div>
