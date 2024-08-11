@@ -30,6 +30,7 @@
             opacity: 0;
             animation: fadeInContainer 3s ease forwards;
             transition: transform 0.3s ease-in-out;
+            word-wrap: break-word; /* Добавлено для переноса длинных строк */
         }
 
         .container:hover {
@@ -50,20 +51,20 @@
         h1, p {
             font-size: 1.2rem;
             margin: 10px 0;
-            white-space: nowrap;
             overflow: hidden;
             border-right: 4px solid #0afff9;
             box-sizing: border-box;
+            white-space: normal; /* Изменено для переноса текста на новые строки */
         }
 
         h1 {
             font-size: 2rem;
-            width: 0;
+            width: 100%; /* Установлено для адаптации к ширине экрана */
             animation: typing 4s steps(40, end) forwards, blink .75s step-end infinite;
         }
 
         p {
-            width: 0;
+            width: 100%; /* Установлено для адаптации к ширине экрана */
             animation: typing 4s steps(40, end) forwards, blink .75s step-end infinite;
         }
 
@@ -87,7 +88,7 @@
             color: #ffd700; /* Золотой цвет для ссылки */
             text-decoration: none;
             font-weight: bold;
-            word-break: break-all;
+            word-break: break-word;
             transition: color 0.3s ease;
         }
 
@@ -141,14 +142,10 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.2rem; /* Уменьшен размер шрифта для заголовков */
-                width: 100%; /* Увеличена ширина для текста */
-                border-right: 2px solid #0afff9;
+                font-size: 1.5rem;
             }
             p {
-                font-size: 1rem; /* Уменьшен размер шрифта для параграфов */
-                width: 100%; /* Увеличена ширина для текста */
-                border-right: 2px solid #0afff9;
+                font-size: 1rem;
             }
             .logo {
                 width: 60px;
